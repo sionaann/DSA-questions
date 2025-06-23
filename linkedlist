@@ -1,0 +1,94 @@
+876. Middle of the Linked List
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head; 
+        while( fast != null && (fast.next ) != null){
+           slow = slow.next;
+            fast =fast.next.next;
+        }
+        return slow;
+    }
+}
+1290. Convert Binary Number in a Linked List to Integer
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        int ans = 0;
+        while( head != null){
+            ans = 2 * ans + head.val;
+            head = head.next;
+        }
+        return ans;
+    }
+}
+160. Intersection of Two Linked Lists
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode a = headA;
+        ListNode b = headB;
+        while( a != b){
+            a = ( a== null)? headB : a.next;
+            b = ( b== null)? headA : b.next;
+        }
+        return a;
+    }
+}
+
+
+141. Linked List Cycle
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if( head == null){
+            return false;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while( fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                return true;
+            }
+        }
+                return false;
+
+        }
+    }
+142. Linked List Cycle II
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+         if(head == null){
+            return null;
+
+         }
+         ListNode slow = head;
+         ListNode fast = head;
+         boolean isCycle = false;
+         while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                isCycle = true;
+                break;
+            }
+         }
+         if(!isCycle) return null;
+         ListNode temp = head;
+         while(temp != slow){
+            temp = temp.next;
+            slow = slow.next;
+         }
+         return temp;
+    }
+}
